@@ -27,7 +27,7 @@ T2 (PK int key, FK int t1key, string value, default date)
 ### CRUD of data
 GET /data returns all records where t1.key = t2.t1key
 
-POST /data creates new records in T1 & T2 from body {data: string} (data must not exists)
+POST /data creates new records in T1 & T2 from body json: {"data": string} (data must not exists)
 
-DELETE /data deletes a record in T1 using the body {key: int} (the referenced record in T2 is auto-deleted)
+DELETE /data deletes a record in T1 using the body json: {"key": int} (the referenced record in T2 is auto-deleted)
 
