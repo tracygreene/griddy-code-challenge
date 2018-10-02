@@ -39,3 +39,15 @@ DELETE /data deletes a record in T1 using the body json:
 ```
 (the referenced record in T2 is auto-deleted)
 
+### Test via curl
+```curl
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"data":"string goes here"}' \
+  http://ec2-13-57-181-186.us-west-1.compute.amazonaws.com:80/data
+```
+
+```
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET http://ec2-13-57-181-186.us-west-1.compute.amazonaws.com:80/data
+```
+
