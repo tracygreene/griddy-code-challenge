@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package data;
+import "google/protobuf/timestamp.proto";
+// The Data service definition.
+service Data {   
+
+  // Get all Data with filter - A server-to-client streaming RPC.
+  rpc GetData(DataFilter) returns (stream Record) {}
+
+  // Create a new Data - A simple RPC 
+  rpc CreateData (DataRequest) returns (DataResponse) {}
+  
+  //Delete data - A simple RPC
+  rpc DeleteData(DeleteDataRequest) returns (DeleteDataResponse) {}
+}
+
+// Record message for T1 & T2 columns from database
+message Record {
+  
+  int32 T1_Key = 1;
+  string T1_Data = 2;
+  int32 T2_Key = 3;
+  int32 T2_T1key = 4;
+  string T2_Data = 5;
+  google.protobuf.Timestamp T2_CreatedOn = 6;
+
+}
+
+// Request message for creating a new data entry
+message DataRequest {
+
+  string data = 1;
+}
+
+
+message DataResponse {
+
+  string data = 1;
+  bool success = 2;
+  int32 key = 3;
+}
+
+message DataFilter {    
+
+  string keyword = 1;
+}
+
+message DeleteDataRequest {
+  
+  string data = 1;
+}
+
+message DeleteDataResponse {
+  
+  string data = 1;
+  bool success = 2;
+}
+
